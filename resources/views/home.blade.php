@@ -9,6 +9,15 @@
 @section('content')
 
 <div class="row">
+    
+    <div class="callout callout-info">
+        <h5>Mês de referência</h5>
+        <p><b>Novembro</b> - 2023</p>
+    </div>
+
+</div>
+
+<div class="row">
     <div class="col-lg-3 col-6">
 
         <div class="small-box bg-info">
