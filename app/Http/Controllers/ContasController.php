@@ -16,7 +16,7 @@ class ContasController extends Controller
      */
     public function index()
     {
-        $contas = Contas::getContas();
+        $contas = Contas::all();
         $modalidades = Modalidade::all();
         $modalidadePagamentos = ModalidadePagamento::all();
 

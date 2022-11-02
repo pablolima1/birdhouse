@@ -36,13 +36,13 @@
 		<tbody>
 			@foreach($contas as $conta)
 			<tr>
-				<td>{{$conta->nome_conta}}</td>
-				<td>{{$conta->nome_mod}}</td>
-				<td>{{$conta->nome_mod_pag}}</td>
-				<td>{{$conta->valor_conta}}</td>
-				<td>{{$conta->dt_pag_conta}}</td>
-				<td>{{$conta->data_criacao_conta}}</td>
-				<td>{{$conta->resp_pag_conta}}</td>				
+				<td>{{$conta->nome}}</td>
+				<td>{{$conta->modalidade->nome}}</td>
+				<td>{{$conta->modalidadePagamento->nome}}</td>
+				<td>{{$conta->valor}}</td>
+				<td>{{$conta->data_pagamento}}</td>
+				<td>{{$conta->created_at}}</td>
+				<td>{{$conta->responsavel_pagamento}}</td>				
 			</tr>
 			@endforeach
 		</tbody>
