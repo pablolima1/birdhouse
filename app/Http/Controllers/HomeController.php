@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Contas;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 
 class HomeController extends Controller
 {
@@ -33,6 +34,8 @@ class HomeController extends Controller
 
         $usuarios = User::all();
         
-        return view('home', compact('contas', 'totalPagamento', 'contasPendentes', 'usuarios'));
+        $mesAtual = Carbon::now();      
+        
+        return view('home', compact('contas', 'totalPagamento', 'contasPendentes', 'usuarios', 'mesAtual'));
     }
 }

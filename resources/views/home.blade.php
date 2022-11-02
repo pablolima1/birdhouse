@@ -12,7 +12,7 @@
     
     <div class="callout callout-info">
         <h5>Mês de referência</h5>
-        <p><b>Novembro</b> - 2023</p>
+        <p><b>{{$mesAtual->formatLocalized('%A %d %B %Y')}}</b></p>
     </div>
 
 </div>
