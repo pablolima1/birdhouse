@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contas;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -29,7 +30,9 @@ class HomeController extends Controller
         $totalPagamento = Contas::all()->sum('valor');
 
         $contasPendentes = Contas::contasPendentes();
+
+        $usuarios = User::all();
         
-        return view('home', compact('contas', 'totalPagamento', 'contasPendentes'));
+        return view('home', compact('contas', 'totalPagamento', 'contasPendentes', 'usuarios'));
     }
 }

@@ -33,30 +33,16 @@
             <div class="icon">
                 <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
 
     <div class="col-lg-3 col-6">
 
-        <div class="small-box bg-warning">
-            <div class="inner">
-                <h3>44</h3>
-                <p>User Registrations</p>
-            </div>
-            <div class="icon">
-                <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-        </div>
-    </div>
-
-    <div class="col-lg-3 col-6">
-
-        <div class="small-box bg-danger">
+        <div class="small-box bg-success">
             <div class="inner">
                 <h3>R$ {{$totalPagamento}}</h3>
-                <p>Unique Visitors</p>
+                <p>Valor Total Pago</p>
             </div>
             <div class="icon">
                 <i class="ion ion-pie-graph"></i>
@@ -65,8 +51,21 @@
         </div>
     </div>
 
-</div>
+    <div class="col-lg-3 col-6">
 
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3>{{$usuarios->count()}}</h3>
+                <p>Usuários Cadastrados</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">Mais informações <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+
+</div>
 
 @stop
 
