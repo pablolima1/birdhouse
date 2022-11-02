@@ -28,14 +28,17 @@ class HomeController extends Controller
     {
         $contas = Contas::all();
 
-        $totalPagamento = Contas::all()->sum('valor');
-
+        $contasPagas = Contas::whereMonth('data_pagamento', date('m'))->get();
+        //dd($contasPagas);
+        $totalPagamento = Contas::whereMonth('data_pagamento', date('m'))->sum('valor');
+        
         $contasPendentes = Contas::contasPendentes();
 
         $usuarios = User::all();
-        
+
+        setlocale(LC_TIME, 'ptb');
         $mesAtual = Carbon::now();      
         
-        return view('home', compact('contas', 'totalPagamento', 'contasPendentes', 'usuarios', 'mesAtual'));
+        return view('home', compact('contas', 'totalPagamento', 'contasPendentes', 'usuarios', 'mesAtual', 'contasPagas'));
     }
 }

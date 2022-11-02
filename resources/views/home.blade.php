@@ -12,7 +12,7 @@
     
     <div class="callout callout-info">
         <h5>Mês de referência</h5>
-        <p><b>{{$mesAtual->formatLocalized('%A %d %B %Y')}}</b></p>
+        <p><b>{{$mesAtual->formatLocalized('%B %Y')}}</b></p>
     </div>
 
 </div>
@@ -22,7 +22,7 @@
 
         <div class="small-box bg-info">
             <div class="inner">
-                <h3>{{$contas->count()}}</h3>
+                <h3>{{$contasPagas->count()}}</h3>
                 <p>Total Contas Pagas</p>
             </div>
             <div class="icon">
