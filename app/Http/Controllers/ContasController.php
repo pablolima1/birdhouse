@@ -20,9 +20,12 @@ class ContasController extends Controller
         $modalidades = Modalidade::all();
         $modalidadePagamentos = ModalidadePagamento::all();
 
-        $totalPagamento = Contas::all()->sum('valor');        
+        $totalPagamento = Contas::all()->sum('valor');
 
-        return view('conta.index', compact('contas', 'modalidades', 'modalidadePagamentos', 'totalPagamento'));
+        $totalOutubro = Contas::whereMonth('data_pagamento', 10)->get()->sum('valor');
+        $totalNovembro = Contas::whereMonth('data_pagamento', 11)->get()->sum('valor');
+
+        return view('conta.index', compact('contas', 'modalidades', 'modalidadePagamentos', 'totalPagamento', 'totalOutubro', 'totalNovembro'));
     }
 
     /**
