@@ -24,13 +24,12 @@
 
 	<div class="row">
 
-		<div class="col-md-6">
-
-			<div class="card">
+		@foreach($agrupado as $mes => $itens)
+		<div class="card">
 				<div class="card-header">
-					<h3 class="card-title"><b>Outubro</b> - 2022</h3>
+					<h3 class="card-title"><b>{{ $mes }}</b></h3>
 					<div class="card-tools">
-						<h5>R$ <b>{{$totalOutubro}}</b></h5>
+						<h5>R$ <b>{{$itens->sum('valor')}}</b></h5>
 					</div>
 				</div>
 
@@ -46,67 +45,23 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($contas as $conta)
-							@if(\Carbon\Carbon::parse($conta->data_pagamento)->format('m') == 10)
+							@foreach($itens as $item)
 							<tr>
-								<td>{{$conta->nome}}</td>
-								<td>{{$conta->modalidade->nome}}</td>
-								<td>{{$conta->modalidadePagamento->nome}}</td>
-								<td>{{$conta->valor}}</td>
-								<td>{{\Carbon\Carbon::parse($conta->data_pagamento)->format('m/d/Y')}}</td>			
+								<td>{{$item->nome}}</td>
+								<td>{{$item->modalidade->nome}}</td>
+								<td>{{$item->modalidadePagamento->nome}}</td>
+								<td>{{$item->valor}}</td>
+								<td>{{\Carbon\Carbon::parse($item->data_pagamento)->format('d/m/Y')}}</td>			
 							</tr>
-							@endif
 							@endforeach							
 						</tbody>
 					</table>
 				</div>
 
 			</div>
-			
-		</div>
+			@endforeach
 
-		<div class="col-md-6">
-
-			<div class="card">
-				<div class="card-header">
-					<h3 class="card-title"><b>Novembro -</b> 2022</h3>
-					<div class="card-tools">
-						<h5>R$ <b>{{$totalNovembro}}</b></h5>
-					</div>
-				</div>
-
-				<div class="card-body p-0">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>Nome</th>
-								<th>Modalidade</th>
-								<th>Forma de Pagamento</th>
-								<th>Valor</th>
-								<th>Data Pagamento</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach($contas as $conta)
-							@if(\Carbon\Carbon::parse($conta->data_pagamento)->format('m') == 11)
-							<tr>
-								<td>{{$conta->nome}}</td>
-								<td>{{$conta->modalidade->nome}}</td>
-								<td>{{$conta->modalidadePagamento->nome}}</td>
-								<td>{{$conta->valor}}</td>
-								<td>{{\Carbon\Carbon::parse($conta->data_pagamento)->format('m/d/Y')}}</td>			
-							</tr>
-							@endif
-							@endforeach							
-						</tbody>
-					</table>
-				</div>
-
-			</div>
-			
-		</div>
-		
-	</div>
+	</div>		
 
 </div>
 

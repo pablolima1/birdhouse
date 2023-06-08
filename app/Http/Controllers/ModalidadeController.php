@@ -38,6 +38,7 @@ class ModalidadeController extends Controller
     {
         $store = Modalidade::create([
             'nome' => $request->nome,
+            'modalidade_fixa' => $request->modalidade_fixa,
             'ativo' => $request->ativo,
             'responsavel_pagamento' => auth()->user()->name
         ]);

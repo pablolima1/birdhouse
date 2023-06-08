@@ -9,5 +9,6 @@ class Modalidade extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nome', 'ativo', 'responsavel_pagamento'];
+    protected $fillable = ['nome', 'modalidade_fixa', 'ativo', 'responsavel_pagamento'];
+
 }

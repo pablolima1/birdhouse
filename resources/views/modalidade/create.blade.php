@@ -21,6 +21,13 @@
 				<input type="text" class="form-control" name="nome" placeholder="Nome da Modalidade">
 			</div>
 			<div class="form-group" data-select2-id="44">
+				<label>Modalidade Fixa</label>
+				<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" name="modalidade_fixa">
+					<option selected="selected" data-select2-id="1" value="1">Sim</option>
+					<option data-select2-id="0" value="0">Não</option>
+				</select>
+			</div>
+			<div class="form-group" data-select2-id="44">
 				<label>Ativo</label>
 				<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" name="ativo">
 					<option selected="selected" data-select2-id="1">Sim</option>

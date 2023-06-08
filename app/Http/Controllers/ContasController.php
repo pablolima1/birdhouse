@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 Use App\Models\Contas;
 Use App\Models\Modalidade;
 Use App\Models\ModalidadePagamento;
+use Carbon\Carbon;
 
 class ContasController extends Controller
 {
@@ -17,6 +18,13 @@ class ContasController extends Controller
     public function index()
     {
         $contas = Contas::all();
+
+        $agrupado = collect($contas)->groupBy(function ($item) {
+            // Use a biblioteca Carbon para manipular as datas
+            $data = Carbon::parse($item['created_at']);
+            return $data->format('m-Y');
+        });
+
         $modalidades = Modalidade::all();
         $modalidadePagamentos = ModalidadePagamento::all();
 
@@ -24,8 +32,9 @@ class ContasController extends Controller
 
         $totalOutubro = Contas::whereMonth('data_pagamento', 10)->get()->sum('valor');
         $totalNovembro = Contas::whereMonth('data_pagamento', 11)->get()->sum('valor');
+        $totalDezembro = Contas::whereMonth('data_pagamento', 12)->get()->sum('valor');
 
-        return view('conta.index', compact('contas', 'modalidades', 'modalidadePagamentos', 'totalPagamento', 'totalOutubro', 'totalNovembro'));
+        return view('conta.index', compact('contas', 'modalidades', 'modalidadePagamentos', 'totalPagamento', 'totalOutubro', 'totalNovembro', 'totalDezembro', 'agrupado'));
     }
 
     /**
