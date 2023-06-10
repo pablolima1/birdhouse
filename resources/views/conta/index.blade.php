@@ -46,6 +46,7 @@
 						</thead>
 						<tbody>
 							@foreach($itens as $item)
+							@if(auth()->user()->id == $item->user_id)
 							<tr>
 								<td>{{$item->nome}}</td>
 								<td>{{$item->modalidade->nome}}</td>
@@ -53,11 +54,11 @@
 								<td>{{$item->valor}}</td>
 								<td>{{\Carbon\Carbon::parse($item->data_pagamento)->format('d/m/Y')}}</td>			
 							</tr>
+							@endif
 							@endforeach							
 						</tbody>
 					</table>
 				</div>
-
 			</div>
 			@endforeach
 

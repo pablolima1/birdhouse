@@ -10,7 +10,7 @@ class Contas extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id_modalidade', 'id_modalidade_pagamento', 'nome', 'valor', 'data_pagamento', 'responsavel_pagamento'];
+    protected $fillable = ['id_modalidade', 'id_modalidade_pagamento', 'nome', 'valor', 'data_pagamento', 'responsavel_pagamento', 'user_id'];
 
     public static function contasPendentes(){
 
