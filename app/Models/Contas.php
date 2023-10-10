@@ -22,6 +22,7 @@ class Contas extends Model
                  ->join('modalidades as md', 'ct.id_modalidade', '=', 'md.id')
                  ->where('md.modalidade_fixa', 1)
                  ->whereMonth('ct.created_at', date('m'))
+                 ->whereYear('ct.created_at', date('Y'))
                  ->get();       
                 
         $resultado = $modalidadesFixas->count() - $contasFixasPagas->count();
