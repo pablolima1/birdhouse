@@ -28,9 +28,9 @@ class HomeController extends Controller
     {
         $contas = Contas::all();
 
-        $contasPagas = Contas::whereMonth('data_pagamento', date('m'))->get();
+        $contasPagas = Contas::whereMonth('data_pagamento', date('m'))->whereYear('data_pagamento', date('Y'))->get();
         
-        $totalPagamento = Contas::whereMonth('data_pagamento', date('m'))->sum('valor');
+        $totalPagamento = Contas::whereMonth('data_pagamento', date('m'))->whereYear('data_pagamento', date('Y'))->sum('valor');
         
         $contasPendentes = Contas::contasPendentes();
 
