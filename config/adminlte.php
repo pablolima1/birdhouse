@@ -344,7 +344,7 @@ return [
                             'icon' => 'fas fa-fw fa-eye',
                         ],
                         [
-                            'text' => 'Cadastrar',
+                            'text' => 'Registrar Pagamento',
                             'route'  => 'conta.create',
                             'icon' => 'fas fa-fw fa-plus-circle',
                         ],

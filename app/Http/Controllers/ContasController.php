@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Format;
 use Illuminate\Http\Request;
 Use App\Models\Contas;
 Use App\Models\Modalidade;
@@ -58,7 +59,7 @@ class ContasController extends Controller
             'id_modalidade' => $request->id_modalidade,
             'id_modalidade_pagamento' => $request->id_modalidade_pagamento,
             'nome' => $request->nome,
-            'valor' => $request->valor,
+            'valor' => Format::formatarParaBanco($request->valor),
             'data_pagamento' => $request->data_pagamento,
             'responsavel_pagamento' => auth()->user()->name,
             'user_id' => auth()->user()->id,
