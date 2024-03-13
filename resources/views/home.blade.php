@@ -11,8 +11,7 @@
 <div class="row">
     
     <div class="callout callout-info">
-        <h5>Mês de referência</h5>
-        <p><b>{{$mesAtual->formatLocalized('%B %Y')}}</b></p>
+        <h5>Mês de referência - <b>{{ $mesAtual }}</b></h5>
     </div>
 
 </div>

@@ -36,8 +36,7 @@ class HomeController extends Controller
 
         $usuarios = User::all();
 
-        setlocale(LC_TIME, 'ptb');
-        $mesAtual = Carbon::now();      
+        $mesAtual = ucfirst(Carbon::now()->locale('pt_BR')->monthName);
         
         return view('home', compact('contas', 'totalPagamento', 'contasPendentes', 'usuarios', 'mesAtual', 'contasPagas'));
     }
