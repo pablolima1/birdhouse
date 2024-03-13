@@ -19,7 +19,7 @@
 <div class="row">
     <div class="col-lg-3 col-6">
 
-        <div class="small-box bg-info">
+        <div class="small-box bg-success">
             <div class="inner">
                 <h3>{{$contasPagas->count()}}</h3>
                 <p>Total Contas Pagas</p>
@@ -47,9 +47,9 @@
 
     <div class="col-lg-3 col-6">
 
-        <div class="small-box bg-success">
+        <div class="small-box bg-info">
             <div class="inner">
-                <h3>R$ {{$totalPagamento}}</h3>
+                <h3>{{Format::formatarMoeda($totalPagamento) }}</h3>
                 <p>Valor Total Pago</p>
             </div>
             <div class="icon">
