@@ -24,6 +24,7 @@ Route::prefix('conta')->group(function () {
 	Route::get('/cadastrar', [ContasController::class, 'index'])->name('conta.index');
 	Route::get('/cadastrar/create', [ContasController::class, 'create'])->name('conta.create');
 	Route::post('/cadastrar/store', [ContasController::class, 'store'])->name('conta.store');
+	Route::get('/pendentes', [ContasController::class, 'pendentes'])->name('conta.pendentes');
 });
 
 Route::prefix('modalidade')->group(function () {

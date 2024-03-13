@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Format;
 use Illuminate\Http\Request;
-Use App\Models\Contas;
-Use App\Models\Modalidade;
-Use App\Models\ModalidadePagamento;
+use App\Models\Contas;
+use App\Models\Modalidade;
+use App\Models\ModalidadePagamento;
 use Carbon\Carbon;
 
 class ContasController extends Controller
@@ -19,13 +19,13 @@ class ContasController extends Controller
     public function index()
     {
         $contas = Contas::all();
-        
+
         $agrupado = collect($contas)->groupBy(function ($item) {
             // Use a biblioteca Carbon para manipular as datas
             $data = Carbon::parse($item['created_at']);
             return $data->format('m-Y');
         });
-        
+
         $modalidades = Modalidade::all();
         $modalidadePagamentos = ModalidadePagamento::all();
 
@@ -64,52 +64,28 @@ class ContasController extends Controller
             'responsavel_pagamento' => auth()->user()->name,
             'user_id' => auth()->user()->id,
         ]);
-        
+
         return redirect()->route('conta.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function pendentes()
     {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        $mesCorrente = Carbon::now()->month;
+        $anoCorrente = Carbon::now()->year;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        $modalidadesFixas = Modalidade::where('modalidade_fixa', true)->get();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $contasPagas = Contas::whereYear('data_pagamento', $anoCorrente)
+            ->whereMonth('data_pagamento', $mesCorrente)
+            ->get();
+
+        $modalidadesPagas = $contasPagas->pluck('id_modalidade');
+
+        $modalidadesNaoPagas = $modalidadesFixas->pluck('id')->diff($modalidadesPagas);
+
+        $contasNaoPagas = $modalidadesFixas->whereIn('id', $modalidadesNaoPagas);
+
+        return view('conta.contas_pendentes', compact('contasNaoPagas'));
     }
 }

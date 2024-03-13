@@ -30,6 +30,16 @@ class Contas extends Model
         return $resultado;
     }
 
+    public static function contasPendentesPagamento(){
+
+        $contasFixasPagas = DB::table('contas as ct')
+                 ->rightJoin('modalidades as md', 'ct.id_modalidade', '=', 'md.id')
+                 ->where('md.modalidade_fixa', 1)
+                 ->get();
+
+        return $contasFixasPagas;
+    }
+
     public function modalidade()
     {
         return $this->belongsTo(Modalidade::class, 'id_modalidade');
