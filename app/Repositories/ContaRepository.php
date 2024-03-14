@@ -26,6 +26,8 @@ class ContaRepository
             return $data->format('m-Y');
         });
 
-		return $agrupado;
+		$collection = collect($agrupado);
+
+		return $collection->reverse()->all();
 	}
 }

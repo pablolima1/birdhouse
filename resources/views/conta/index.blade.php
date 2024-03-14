@@ -23,9 +23,8 @@
 <div class="container">
 
 	<div class="row">
-
 		@foreach($agrupado as $mes => $itens)
-		<div class="card">
+		<div class="card w-100">
 				<div class="card-header">
 					<h3 class="card-title"><b>{{ $mes }}</b></h3>
 					<div class="card-tools">
@@ -59,13 +58,11 @@
 						</tbody>
 					</table>
 				</div>
-			</div>
-			@endforeach
-
+		</div>
+		@endforeach
 	</div>		
 
 </div>
-
 
 @stop
 
