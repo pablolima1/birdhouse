@@ -6,11 +6,19 @@ use App\Helpers\Format;
 use Illuminate\Http\Request;
 use App\Models\Contas;
 use App\Models\Modalidade;
-use App\Models\ModalidadePagamento;
+use App\Repositories\ContaRepository;
+use App\Repositories\ModalidadeRepository;
 use Carbon\Carbon;
 
 class ContasController extends Controller
 {
+    private $repositoryConta;
+    private $repositoryModalidade;
+
+    public function __construct(ContaRepository $repositoryConta, ModalidadeRepository $repositoryModalidade) {
+        $this->repositoryConta = $repositoryConta;
+        $this->repositoryModalidade = $repositoryModalidade;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,20 +26,10 @@ class ContasController extends Controller
      */
     public function index()
     {
-        $contas = Contas::all();
+        $contas = $this->repositoryConta->all();
+        $agrupado = $this->repositoryConta->contasAgrupadasMesAno();
 
-        $agrupado = collect($contas)->groupBy(function ($item) {
-            // Use a biblioteca Carbon para manipular as datas
-            $data = Carbon::parse($item['created_at']);
-            return $data->format('m-Y');
-        });
-
-        $modalidades = Modalidade::all();
-        $modalidadePagamentos = ModalidadePagamento::all();
-
-        $totalPagamento = Contas::all()->sum('valor');
-
-        return view('conta.index', compact('contas', 'modalidades', 'modalidadePagamentos', 'totalPagamento', 'agrupado'));
+        return view('conta.index', compact('contas', 'agrupado'));
     }
 
     /**
@@ -41,7 +39,7 @@ class ContasController extends Controller
      */
     public function create()
     {
-        $modalidades = Modalidade::all();
+        $modalidades = $this->repositoryModalidade->all();
 
         return view('conta.create', compact('modalidades'));
     }

@@ -10,7 +10,7 @@
 			</div>
 			<div class="col">
 				<div class="float-end">
-					<label class="float-end"><h5><b>Total pago: R$</b>{{$totalPagamento}}</h5></label>	
+					<label class="float-end"><h5><b>Total pago: </b>{{ Format::formatarMoeda($contas->sum('valor')) }}</h5></label>	
 				</div>
 			</div>
 			
@@ -29,7 +29,7 @@
 				<div class="card-header">
 					<h3 class="card-title"><b>{{ $mes }}</b></h3>
 					<div class="card-tools">
-						<h5>R$ <b>{{$itens->sum('valor')}}</b></h5>
+						<h5><b>{{ Format::formatarMoeda($itens->sum('valor')) }}</b></h5>
 					</div>
 				</div>
 
@@ -51,7 +51,7 @@
 								<td>{{$item->nome}}</td>
 								<td>{{$item->modalidade->nome}}</td>
 								<td>{{$item->modalidadePagamento->nome}}</td>
-								<td>{{$item->valor}}</td>
+								<td>{{ Format::formatarMoeda($item->valor) }}</td>
 								<td>{{\Carbon\Carbon::parse($item->data_pagamento)->format('d/m/Y')}}</td>			
 							</tr>
 							@endif
