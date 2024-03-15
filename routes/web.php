@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContasController;
 use App\Http\Controllers\ModalidadeController;
 use App\Http\Controllers\ModalidadePagamentoController;
+use App\Http\Controllers\UsuarioController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +21,10 @@ use App\Http\Controllers\ModalidadePagamentoController;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::prefix('usuario')->group(function () {
+	Route::get('/listar', [UsuarioController::class, 'index'])->name('usuario.index');
+});
 
 Route::prefix('conta')->group(function () {
 	Route::get('/cadastrar', [ContasController::class, 'index'])->name('conta.index');
