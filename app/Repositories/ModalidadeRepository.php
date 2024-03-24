@@ -18,5 +18,10 @@ class ModalidadeRepository
 	{
 		return $this->model->all();
 	}
+
+	public function fixas()
+	{
+		return $this->model->all()->where('modalidade_fixa', true);
+	}
 	
 }
