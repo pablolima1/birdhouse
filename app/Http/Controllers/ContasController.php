@@ -44,8 +44,7 @@ class ContasController extends Controller
 
     public function pendentes()
     {
-        $modalidadesFixas = $this->repositoryModalidade->fixas();
-        $contasNaoPagas = $this->repositoryConta->contasPendentes($modalidadesFixas);
+        $contasNaoPagas = $this->repositoryConta->contasPendentes();
 
         return view('conta.contas_pendentes', compact('contasNaoPagas'));
     }

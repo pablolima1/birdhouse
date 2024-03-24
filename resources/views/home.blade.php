@@ -33,9 +33,9 @@
 
     <div class="col-lg-3 col-6">
 
-        <div class="small-box {{$contasPendentes == 0 ? 'bg-success' : 'bg-danger'}}">
+        <div class="small-box {{$contasPendentes->count() == 0 ? 'bg-success' : 'bg-danger'}}">
             <div class="inner">
-                <h3>{{$contasPendentes}}</h3>
+                <h3>{{$contasPendentes->count()}}</h3>
                 <p>Contas Fixas Pendentes</p>
             </div>
             <div class="icon">

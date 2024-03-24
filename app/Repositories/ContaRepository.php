@@ -5,14 +5,17 @@ namespace App\Repositories;
 use App\Models\Contas;
 use Carbon\Carbon;
 use App\Helpers\Format;
+use App\Repositories\ModalidadeRepository;
 
 class ContaRepository
 {
 	private $model;
+	private $repositoryModalidade;
 
-	public function __construct(Contas $model)
+	public function __construct(Contas $model, ModalidadeRepository $repositoryModalidade)
 	{
 		$this->model = $model;
+		$this->repositoryModalidade = $repositoryModalidade;
 	}
 
 	public function all()
@@ -45,7 +48,7 @@ class ContaRepository
 		return $collection->reverse()->all();
 	}
 
-	public function contasPendentes($modalidadesFixas)
+	public function contasPendentes()
 	{
 		$mesCorrente = Carbon::now()->month;
         $anoCorrente = Carbon::now()->year;
@@ -56,10 +59,22 @@ class ContaRepository
 
         $modalidadesPagas = $contasPagas->pluck('id_modalidade');
 
+		$modalidadesFixas = $this->repositoryModalidade->fixas();
+
         $modalidadesNaoPagas = $modalidadesFixas->pluck('id')->diff($modalidadesPagas);
 
         $contasNaoPagas = $modalidadesFixas->whereIn('id', $modalidadesNaoPagas);
 
 		return $contasNaoPagas;
+	}
+
+	public function contasPagasMesAnoAtual()
+	{
+		return $this->model->whereMonth('data_pagamento', date('m'))->whereYear('data_pagamento', date('Y'))->get();
+	}
+
+	public function totalPagamentoMesAnoAtual()
+	{
+		return $this->model->whereMonth('data_pagamento', date('m'))->whereYear('data_pagamento', date('Y'))->sum('valor');
 	}
 }

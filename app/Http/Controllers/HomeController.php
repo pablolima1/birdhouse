@@ -2,40 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Contas;
-use App\Models\User;
+use App\Repositories\ContaRepository;
+use App\Repositories\UsuarioRepository;
 use Illuminate\Support\Carbon;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    private $repositoryConta;
+    private $repositoryUsuario;
+
+    public function __construct(ContaRepository $repositoryConta, UsuarioRepository $repositoryUsuario)
     {
         $this->middleware('auth');
+        $this->repositoryConta = $repositoryConta;
+        $this->repositoryUsuario = $repositoryUsuario;
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        $contas = Contas::all();
-
-        $contasPagas = Contas::whereMonth('data_pagamento', date('m'))->whereYear('data_pagamento', date('Y'))->get();
-        
-        $totalPagamento = Contas::whereMonth('data_pagamento', date('m'))->whereYear('data_pagamento', date('Y'))->sum('valor');
-        
-        $contasPendentes = Contas::contasPendentes();
-
-        $usuarios = User::all();
-
+        $contas = $this->repositoryConta->all();
+        $contasPagas = $this->repositoryConta->contasPagasMesAnoAtual();
+        $totalPagamento = $this->repositoryConta->totalPagamentoMesAnoAtual();
+        $contasPendentes = $this->repositoryConta->contasPendentes();
+        $usuarios = $this->repositoryUsuario->all();
         $mesAtual = ucfirst(Carbon::now()->locale('pt_BR')->monthName);
         
         return view('home', compact('contas', 'totalPagamento', 'contasPendentes', 'usuarios', 'mesAtual', 'contasPagas'));

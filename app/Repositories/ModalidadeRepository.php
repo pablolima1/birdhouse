@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Modalidade;
-use Carbon\Carbon;
 
 class ModalidadeRepository 
 {
