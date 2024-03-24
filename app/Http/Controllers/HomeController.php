@@ -20,13 +20,12 @@ class HomeController extends Controller
 
     public function index()
     {
-        $contas = $this->repositoryConta->all();
         $contasPagas = $this->repositoryConta->contasPagasMesAnoAtual();
         $totalPagamento = $this->repositoryConta->totalPagamentoMesAnoAtual();
         $contasPendentes = $this->repositoryConta->contasPendentes();
         $usuarios = $this->repositoryUsuario->all();
         $mesAtual = ucfirst(Carbon::now()->locale('pt_BR')->monthName);
         
-        return view('home', compact('contas', 'totalPagamento', 'contasPendentes', 'usuarios', 'mesAtual', 'contasPagas'));
+        return view('home', compact('totalPagamento', 'contasPendentes', 'usuarios', 'mesAtual', 'contasPagas'));
     }
 }

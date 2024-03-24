@@ -53,7 +53,8 @@ class ContaRepository
 		$mesCorrente = Carbon::now()->month;
         $anoCorrente = Carbon::now()->year;
 
-        $contasPagas = Contas::whereYear('data_pagamento', $anoCorrente)
+        $contasPagas = Contas::where('user_id', auth()->user()->id)
+			->whereYear('data_pagamento', $anoCorrente)
             ->whereMonth('data_pagamento', $mesCorrente)
             ->get();
 
@@ -70,11 +71,11 @@ class ContaRepository
 
 	public function contasPagasMesAnoAtual()
 	{
-		return $this->model->whereMonth('data_pagamento', date('m'))->whereYear('data_pagamento', date('Y'))->get();
+		return $this->model->where('user_id', auth()->user()->id)->whereMonth('data_pagamento', date('m'))->whereYear('data_pagamento', date('Y'))->get();
 	}
 
 	public function totalPagamentoMesAnoAtual()
 	{
-		return $this->model->whereMonth('data_pagamento', date('m'))->whereYear('data_pagamento', date('Y'))->sum('valor');
+		return $this->model->where('user_id', auth()->user()->id)->whereMonth('data_pagamento', date('m'))->whereYear('data_pagamento', date('Y'))->sum('valor');
 	}
 }
