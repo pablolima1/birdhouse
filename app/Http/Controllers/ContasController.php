@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Format;
 use Illuminate\Http\Request;
-use App\Models\Contas;
-use App\Models\Modalidade;
 use App\Repositories\ContaRepository;
 use App\Repositories\ModalidadeRepository;
-use Carbon\Carbon;
 
 class ContasController extends Controller
 {
