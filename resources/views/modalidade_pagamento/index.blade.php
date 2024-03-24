@@ -4,7 +4,7 @@
 
 @section('content_header')
 	<div class="container">
-		<h1>Cadastrar Forma de Pagamento</h1>
+		<h1>Modalidades Pagamento</h1>
 	</div>
 @stop
 
