@@ -18,6 +18,16 @@ class ModalidadeRepository
 		return $this->model->all();
 	}
 
+	public function store(Object $request)
+	{
+		return Modalidade::create([
+            'nome' => $request->nome,
+            'modalidade_fixa' => $request->modalidade_fixa,
+            'ativo' => $request->ativo,
+            'responsavel_pagamento' => auth()->user()->name
+        ]);
+	}
+
 	public function fixas()
 	{
 		return $this->model->all()->where('modalidade_fixa', true);

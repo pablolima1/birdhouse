@@ -4,7 +4,7 @@
 
 @section('content_header')
 	<div class="container">
-		<h1>Cadastrar Modalidade</h1>
+		<h1>Modalidades</h1>
 	</div>
 @stop
 
