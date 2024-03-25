@@ -34,7 +34,7 @@
                 <div class="form-group" data-select2-id="44">
                     <label>Forma Pagamento</label>
                     <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1"
-                        aria-hidden="true" name="id_modalidade_pagamento" required>
+                        aria-hidden="true" name="modalidade_pagamento_id" required>
                         <option selected="selected" value="">Selecione a forma de pagamento</option>
                         <option value="1">Débito</option>
                         <option value="2">Nubank</option>

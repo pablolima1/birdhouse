@@ -27,7 +27,7 @@ class ContaRepository
 	{
 		return Contas::create([
 			'modalidade_id' => $request->modalidade_id,
-			'id_modalidade_pagamento' => $request->id_modalidade_pagamento,
+			'modalidade_pagamento_id' => $request->modalidade_pagamento_id,
 			'nome' => $request->nome,
 			'valor' => Format::formatarParaBanco($request->valor),
 			'data_pagamento' => $request->data_pagamento,
