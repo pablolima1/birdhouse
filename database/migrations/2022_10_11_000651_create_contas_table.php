@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('contas', function (Blueprint $table) {
             $table->id();
-            $table->string('id_modalidade');
+            $table->integer('modalidade_id');
             $table->string('id_modalidade_pagamento');
             $table->string('nome');
             $table->decimal('valor', 10, 2);
             $table->date('data_pagamento');
             $table->string('responsavel_pagamento');
+            $table->string('user_id');
             $table->timestamps();
         });
     }

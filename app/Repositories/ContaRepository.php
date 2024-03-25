@@ -26,7 +26,7 @@ class ContaRepository
 	public function store(Object $request)
 	{
 		return Contas::create([
-			'id_modalidade' => $request->id_modalidade,
+			'modalidade_id' => $request->modalidade_id,
 			'id_modalidade_pagamento' => $request->id_modalidade_pagamento,
 			'nome' => $request->nome,
 			'valor' => Format::formatarParaBanco($request->valor),
@@ -58,7 +58,7 @@ class ContaRepository
             ->whereMonth('data_pagamento', $mesCorrente)
             ->get();
 
-        $modalidadesPagas = $contasPagas->pluck('id_modalidade');
+        $modalidadesPagas = $contasPagas->pluck('modalidade_id');
 
 		$modalidadesFixas = $this->repositoryModalidade->fixas();
 

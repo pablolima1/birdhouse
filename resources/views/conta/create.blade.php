@@ -24,7 +24,7 @@
                 <div class="form-group" data-select2-id="44">
                     <label>Modalidade</label>
                     <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1"
-                        aria-hidden="true" name="id_modalidade" required>
+                        aria-hidden="true" name="modalidade_id" required>
                         <option selected="selected" value="">Selecione a modalidade</option>
                         @foreach ($modalidades as $modalidade)
                             <option value="{{ $modalidade->id }}">{{ $modalidade->nome }}</option>

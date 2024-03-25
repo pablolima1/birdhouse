@@ -10,11 +10,11 @@ class Contas extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id_modalidade', 'id_modalidade_pagamento', 'nome', 'valor', 'data_pagamento', 'responsavel_pagamento', 'user_id'];
+    protected $fillable = ['modalidade_id', 'id_modalidade_pagamento', 'nome', 'valor', 'data_pagamento', 'responsavel_pagamento', 'user_id'];
 
     public function modalidade()
     {
-        return $this->belongsTo(Modalidade::class, 'id_modalidade');
+        return $this->belongsTo(Modalidade::class);
     }
 
     public function modalidadePagamento()
